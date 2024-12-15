@@ -1,0 +1,48 @@
+.Editor .editor_content textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+  box-sizing: border-box;
+  background-color: rgb(236, 236, 236);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.Editor .editor_upload {
+  height: 500px;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  text-align: center;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Editor .editor_upload > p {
+  margin: 0;
+}
+
+.Editor #upload_btn {
+  display: none;
+}
+
+.Editor .image_header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Editor .editor_btn_save {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Editor > div {
+  margin: 10px 0;
+}

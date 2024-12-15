@@ -1,0 +1,23 @@
+.Header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid rgb(246, 246, 246);
+  padding: 10px 0;
+}
+
+.Header > div {
+  display: flex;
+}
+
+.Header .header_leftBtn {
+  width: 25%;
+  justify-content: flex-start;
+}
+.Header .header_title {
+  width: 50%;
+  justify-content: center;
+}
+.Header .header_rightBtn {
+  width: 25%;
+  justify-content: flex-end;
+}
