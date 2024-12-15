@@ -1,6 +1,16 @@
-export const openDatabase = (dbName, version) => {
+export const openDatabase = () => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("myDatabase", 1);
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+
+      // 객체 저장소 생성 (필요하면 추가로 정의)
+      if (!db.objectStoreNames.contains("store")) {
+        db.createObjectStore("store", { keyPath: "id", autoIncrement: true });
+        console.log("Object store 'store' created.");
+      }
+    };
 
     request.onsuccess = (event) => {
       resolve(event.target.result); // 성공하면 DB 객체를 반환
@@ -11,6 +21,7 @@ export const openDatabase = (dbName, version) => {
     };
   });
 };
+
 
 export const getAllData = async () => {
   try {
@@ -102,5 +113,31 @@ export const updateDataById = async (data) => {
     });
   } catch (error) {
     console.error("Error in updateDataById:", error);
+  }
+};
+
+// 특정 ID의 데이터를 삭제하는 함수
+export const deleteDataById = async (id) => {
+  try {
+    // 데이터베이스 열기
+    const db = await openDatabase("myDatabase", 1); // DB 이름과 버전
+    const transaction = db.transaction("store", "readwrite"); // 읽기/쓰기 트랜잭션
+    const objectStore = transaction.objectStore("store"); // 객체 저장소 가져오기
+
+    return new Promise((resolve, reject) => {
+      // 특정 ID로 데이터 삭제
+      const deleteRequest = objectStore.delete(id);
+
+      deleteRequest.onsuccess = () => {
+        console.log(`Data with ID ${id} successfully deleted.`);
+        resolve(`Data with ID ${id} successfully deleted.`);
+      };
+
+      deleteRequest.onerror = (event) => {
+        reject(new Error("Error deleting data: " + event.target.error));
+      };
+    });
+  } catch (error) {
+    console.error("Error in deleteDataById:", error);
   }
 };

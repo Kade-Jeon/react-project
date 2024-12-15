@@ -1,5 +1,5 @@
 import "./Editor.css";
-import attach from "../../public/attach-black.png";
+import attach from "../assets/attach-black.png";
 
 import { useEffect, useState } from "react";
 
@@ -72,14 +72,14 @@ const Editor = ({ initData, onSubmit }) => {
 
   return (
     <div className="Editor">
-      <div className="image_header">
+      {base64Image ? (<div className="image_header">
         <Button
           className="reset_image"
           name={"RESET"}
           color={"blue"}
           onClick={onClickResetImage}
         />
-      </div>
+      </div>) : ""}
       {base64Image ? (
         <div className="editor_image_preview">
           <img src={base64Image} alt="Preview" />

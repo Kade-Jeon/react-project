@@ -1,10 +1,11 @@
-import write from "../../public/write-white.png";
-import save from "../../public/save-white.png";
-import reset from "../../public/reset-white.png";
+import write from "../assets/write-white.png";
+import save from "../assets/save-white.png";
+import reset from "../assets/reset-white.png";
 
-import trash from "../../public/delete-black.png";
-import edit from "../../public/edit-black.png";
-import back from "../../public/back-black.png";
+import trash from "../assets/delete-black.png";
+import edit from "../assets/edit-black.png";
+import back from "../assets/back-black.png";
+
 
 const getIcon = (name) => {
   switch (name) {

@@ -3,7 +3,7 @@ import "./global.css";
 
 import { useState, createContext, useReducer, useRef, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getAllData, saveData, updateDataById } from "./utils/use-indexed-db";
+import { openDatabase, getAllData, saveData, updateDataById, deleteDataById } from "./utils/use-indexed-db";
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -46,6 +46,7 @@ const reducer = (state, action) => {
       break;
     case "DELETE":
       newState = state.filter((item) => Number(item.id) !== Number(action.id));
+      deleteDataById(action.id);
       break;
     default:
       return state;
@@ -58,6 +59,7 @@ function App() {
   const idRef = useRef(1);
 
   useEffect(() => {
+    openDatabase();
     const fetchData = async () => {
       try {
         const storedData = await getAllData();
@@ -66,9 +68,12 @@ function App() {
             type: "INIT",
             data: storedData,
           });
-          const highestId = Math.max(...storedData.map((item) => item.id));
+        }
+        const highestId = Math.max(...storedData.map((item) => item.id));
+        if (highestId !== -Infinity) {
           idRef.current = highestId;
         }
+
       } catch (e) {
         console.log(e);
       }
