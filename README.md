@@ -1,8 +1,17 @@
-# React + Vite
+# React.js로 다이어리 만들기
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`Info`
+- Language : JavaScript
+- FrameWork : React.js
+- DB : IndexedDB
+- Deploy : Vecel
 
-Currently, two official plugins are available:
+`개발 기간`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2024.12.15 ~ 2024.12.16 (약 12 ~ 13시간)
+
+`설명`
+
+React.js 학습을 위해, 만든 결과물입니다.
+
+인스타그램 UI 처럼 사진 한 장과 글을 올릴 수 있는 형태로 다이어리로 활용할 수 있도록 하였습니다.
