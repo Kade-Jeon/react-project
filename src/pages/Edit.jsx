@@ -1,6 +1,6 @@
 import "./Edit.css";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Header from "../components/Header";
@@ -14,6 +14,7 @@ const Edit = () => {
   const data = useContext(DataStateContext);
   const { onUpdate } = useContext(DataDispatchContext);
   const [selected, setSelected] = useState();
+  const [input, setInput] = useState();
 
   useEffect(() => {
     if (!data) {
@@ -31,7 +32,7 @@ const Edit = () => {
     setSelected(selectedData);
   }, [params, data]);
 
-  const onSubmit = (input) => {
+  const onSubmit = () => {
     onUpdate(
       params.id,
       new Date().getTime().toString(),
@@ -40,6 +41,10 @@ const Edit = () => {
     );
     nav("/", { replace: true });
   };
+
+  const handleInput = useCallback((input) => {
+    setInput(input);
+  },[]);
 
   return (
     <div>
@@ -54,8 +59,15 @@ const Edit = () => {
             }}
           />
         }
+        rightBtn={
+          <Button 
+            name={"SAVE"} 
+            color={"blue"} 
+            onClick={onSubmit}
+            />
+        }
       />
-      <Editor initData={selected} onSubmit={onSubmit} />
+      <Editor initData={selected} handleInput={handleInput} />
     </div>
   );
 };

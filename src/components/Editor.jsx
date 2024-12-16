@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import Button from "./Button";
 
-const Editor = ({ initData, onSubmit }) => {
+const Editor = ({ initData, handleInput }) => {
   const [file, setFile] = useState();
   const [base64Image, setBase64Image] = useState("");
   const [input, setInput] = useState({
@@ -61,14 +61,18 @@ const Editor = ({ initData, onSubmit }) => {
     });
   };
 
-  const onClickSubmit = () => {
-    onSubmit(input);
-  };
-
   const onClickResetImage = () => {
     setFile();
     setBase64Image();
+    setInput({
+      ...input,
+      img:"",
+    })
   };
+
+  useEffect(()=>{
+    handleInput(input);
+  },[input])
 
   return (
     <div className="Editor">
@@ -107,9 +111,6 @@ const Editor = ({ initData, onSubmit }) => {
           placeholder="공유할 내용을 입력해주세요."
           onChange={onChangeInput}
         />
-      </div>
-      <div className="editor_btn_save">
-        <Button name={"SAVE"} color={"blue"} onClick={onClickSubmit} />
       </div>
     </div>
   );

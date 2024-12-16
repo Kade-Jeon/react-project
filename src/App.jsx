@@ -10,20 +10,6 @@ import NotFound from "./pages/NotFound";
 import Edit from "./pages/Edit";
 import Write from "./pages/Write";
 
-// const mockData = [
-//   {
-//     id: 1,
-//     date: new Date("2024-12-14 23:33:33").getTime().toString(),
-//     img: "testimg",
-//     content: "1내용이 잘 나오나요",
-//   },
-//   {
-//     id: 2,
-//     date: new Date().getTime().toString(),
-//     img: "testimg",
-//     content: "2내용이 잘 나오나요",
-//   },
-// ];
 
 export const DataStateContext = createContext();
 export const DataDispatchContext = createContext();

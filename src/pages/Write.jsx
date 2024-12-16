@@ -1,6 +1,6 @@
 import "./Write.css";
 
-import { useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
@@ -10,12 +10,17 @@ import { DataDispatchContext } from "../App";
 
 const Write = () => {
   const nav = useNavigate();
+  const [input, setInput] = useState();
   const { onCreate } = useContext(DataDispatchContext);
 
-  const onSubmit = (input) => {
+  const onSubmit = () => {
     onCreate(new Date().getTime().toString(), input.content, input.img);
     nav(-1, { replace: true });
   };
+
+  const handleInput = useCallback((input) => {
+    setInput(input);
+  },[]);
 
   return (
     <div>
@@ -30,8 +35,15 @@ const Write = () => {
             }}
           />
         }
+        rightBtn={
+          <Button 
+            name={"SAVE"} 
+            color={"blue"} 
+            onClick={onSubmit}
+            />
+        }
       />
-      <Editor onSubmit={onSubmit} />
+      <Editor onSubmit={onSubmit} handleInput={handleInput} />
     </div>
   );
 };

@@ -72,47 +72,49 @@ export const saveData = async (data) => {
 };
 
 // 특정 ID의 데이터를 수정하는 함수
-export const updateDataById = async (data) => {
+export const updateDataById = async (input) => {
+  const data = {
+    ...input,
+    id: Number(input.id),
+  }
   try {
     // 데이터베이스 열기
-
     const db = await openDatabase("myDatabase", 1); // DB 이름과 버전
     const transaction = db.transaction("store", "readwrite"); // 읽기/쓰기 트랜잭션
     const objectStore = transaction.objectStore("store"); // 객체 저장소 가져오기
 
-    return new Promise((resolve, reject) => {
-      // 특정 ID로 데이터 가져오기
-      const getRequest = objectStore.get(data.id);
+    // getRequest를 Promise로 감싸서 반환
+    const getDataById = (id) => {
+      return new Promise((resolve, reject) => {
+        const getRequest = objectStore.get(id);
 
-      getRequest.onsuccess = () => {
-        const existingData = getRequest.result;
+        getRequest.onsuccess = () => resolve(getRequest.result);
+        getRequest.onerror = (event) => reject(new Error("Error fetching data: " + event.target.error));
+      });
+    };
 
-        if (existingData) {
-          // 데이터가 있으면 업데이트
-          const updatedData = { ...existingData, ...data };
+    // updateRequest를 Promise로 감싸서 반환
+    const updateData = (updatedData) => {
+      return new Promise((resolve, reject) => {
+        const updateRequest = objectStore.put(updatedData);
 
-          // 수정된 데이터를 다시 저장
-          const updateRequest = objectStore.put(updatedData);
+        updateRequest.onsuccess = () => resolve(updatedData);
+        updateRequest.onerror = (event) => reject(new Error("Error updating data: " + event.target.error));
+      });
+    };
 
-          updateRequest.onsuccess = () => {
-            console.log("Data successfully updated:", updatedData);
-            resolve(updatedData);
-          };
-
-          updateRequest.onerror = (event) => {
-            reject(new Error("Error updating data: " + event.target.error));
-          };
-        } else {
-          reject(new Error(`Data with ID ${data.id} not found.`));
-        }
-      };
-
-      getRequest.onerror = (event) => {
-        reject(new Error("Error fetching data: " + event.target.error));
-      };
-    });
+    // 데이터를 가져오고 업데이트 작업을 순차적으로 처리
+    const existingData = await getDataById(data.id);
+    if (existingData) {
+      const result = await updateData(data);
+      console.log("Data successfully updated:", result);
+      return result;
+    } else {
+      throw new Error(`Data with ID ${data.id} not found.`);
+    }
   } catch (error) {
     console.error("Error in updateDataById:", error);
+    throw error; // 에러를 다시 던져서 호출하는 곳에서 처리할 수 있도록
   }
 };
 
