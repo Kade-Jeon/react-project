@@ -7,6 +7,7 @@
 
 .Content > div {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .Content .content_img {
@@ -24,5 +25,14 @@
 }
 
 .Content .content_body {
-  margin-bottom: 10px;
+  font-weight: 100;
+}
+
+.Content .content_body {
+  font-weight: 100;
+}
+
+.Content .content_date{
+  font-size: 18px;
+  font-weight: 100;
 }

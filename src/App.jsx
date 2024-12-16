@@ -32,7 +32,8 @@ const reducer = (state, action) => {
   let newState;
   switch (action.type) {
     case "INIT":
-      newState = action.data;
+      let sortedData = action.data.toSorted((a, b) => b.date - a.date);
+      newState = sortedData;
       break;
     case "CREATE":
       newState = [action.data, ...state];

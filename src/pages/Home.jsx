@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <Header
-        title={"My History"}
+        title={"InstaDiary"}
         rightBtn={
           <Button
             name={"WRITE"}

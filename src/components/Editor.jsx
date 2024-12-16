@@ -77,6 +77,7 @@ const Editor = ({ initData, onSubmit }) => {
           className="reset_image"
           name={"RESET"}
           color={"red"}
+          hoverColor={"red"}
           onClick={onClickResetImage}
         />
       </div>) : ""}

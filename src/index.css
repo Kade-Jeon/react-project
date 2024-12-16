@@ -12,12 +12,10 @@ body {
   display: flex;
 }
 
-body {
+#root {
   font-family: "Nanum Gothic";
   font-size: 20px;
-}
-
-#root {
+  font-weight: bold;
   background-color: white;
   max-width: 600px;
   width: 100%;

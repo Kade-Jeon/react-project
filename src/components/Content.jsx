@@ -28,7 +28,7 @@ const Content = ({ id, img, content, date }) => {
         <Button
           name={"EDIT"}
           color={"white"}
-          hoverColor={"gray"}
+          hoverColor={"blue"}
           onClick={() => {
             nav(`/edit/${id}`);
           }}

@@ -13,11 +13,12 @@ const NotFound = () => {
           <p className="text-gray-700">페이지가 없습니다.</p>
           <br />
           <Button
-            name={"뒤로가기"}
+            name={"BACK"}
             onClick={() => {
               nav(-1);
             }}
             color={"blue"}
+            hoverColor={"blue"}
           />
         </div>
       </div>

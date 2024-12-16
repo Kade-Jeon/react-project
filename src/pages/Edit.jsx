@@ -25,8 +25,7 @@ const Edit = () => {
     );
 
     if (!selectedData) {
-      window.alert("데이터가 존재하지 않습니다.");
-      nav(-1, { replace: true });
+      return;
     }
 
     setSelected(selectedData);
