@@ -71,7 +71,7 @@ function App() {
         }
         const highestId = Math.max(...storedData.map((item) => item.id));
         if (highestId !== -Infinity) {
-          idRef.current = highestId;
+          idRef.current = highestId + 1;
         }
 
       } catch (e) {

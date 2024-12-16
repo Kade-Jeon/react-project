@@ -76,7 +76,7 @@ const Editor = ({ initData, onSubmit }) => {
         <Button
           className="reset_image"
           name={"RESET"}
-          color={"blue"}
+          color={"red"}
           onClick={onClickResetImage}
         />
       </div>) : ""}

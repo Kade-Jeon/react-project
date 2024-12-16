@@ -28,15 +28,15 @@ const Content = ({ id, img, content, date }) => {
         <Button
           name={"EDIT"}
           color={"white"}
+          hoverColor={"gray"}
           onClick={() => {
             nav(`/edit/${id}`);
           }}
         />
-        <Button name={"DELETE"} color={"white"} onClick={onClickDelete} />
+        <Button name={"DELETE"} color={"white"} hoverColor={"red"} onClick={onClickDelete} />
       </div>
       <div className="content_date">{parsedDate}</div>
       <div className="content_body">{content}</div>
-      <hr />
     </div>
   );
 };

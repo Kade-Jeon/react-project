@@ -1,6 +1,8 @@
 .Content {
   display: flex;
   flex-direction: column;
+  margin: 20px 0;
+  border-bottom: 1px solid lightgray;
 }
 
 .Content > div {
@@ -19,4 +21,8 @@
 .Content .content_img > img {
   min-height: 300px;
   height: 500px;
+}
+
+.Content .content_body {
+  margin-bottom: 10px;
 }
