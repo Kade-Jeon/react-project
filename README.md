@@ -4,7 +4,8 @@
 - Language : JavaScript
 - FrameWork : React.js
 - DB : IndexedDB
-- Deploy : Vecel
+- Build Tool : Vite
+- Deploy : Vercel
 
 `개발 기간`
 
@@ -12,6 +13,6 @@
 
 `설명`
 
-React.js 학습을 위해, 만든 결과물입니다.
+React.js 학습을 위해 만든 결과물입니다.
 
-인스타그램 UI 처럼 사진 한 장과 글을 올릴 수 있는 형태로 다이어리로 활용할 수 있도록 하였습니다.
+인스타그램 UI 처럼 사진 한 장과 글을 올릴 수 있는 형태로 다이어리(일기) 또는 기록으로 활용할 수 있도록 하였습니다.
